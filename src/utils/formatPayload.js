@@ -13,6 +13,10 @@
 
 const formatter = ({ id, fieldResponse, type, inputs }) => {
   switch (type) {
+    case "FILEUPLOAD":
+      return {
+        fileUploadValues: fieldResponse,
+    }
     case "ADDRESS":
       return {
         addressValues: value,
@@ -89,8 +93,12 @@ export default ({ serverData, clientData }) => {
   const formattedData = serverData
     .map(({ type, inputs, id }) => {
       // Does this particular field have a response?
-      const fieldResponse = clientData[`input_${id}`];
-
+      let fieldResponse
+      if (type === "FILEUPLOAD") {
+        fieldResponse = clientData["fileupload"]
+      } else {
+        fieldResponse = clientData[`input_${id}`]
+      }
       // If so, lets re-format and add to array.
       if (fieldResponse) {
         return {
