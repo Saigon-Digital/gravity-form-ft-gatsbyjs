@@ -33,11 +33,11 @@ const InputWrapper = ({
       )}
       id={wrapId}
     >
-      <label
+      {joinedLabel && <label
         className="gravityform__label gfield_label"
         htmlFor={labelFor}
         dangerouslySetInnerHTML={{ __html: joinedLabel }}
-      />
+      />}
       {outputDescription(description, descriptionPlacement, "above", errors)}
       <div
         className={`ginput_container ginput_container_${valueToLowerCase(

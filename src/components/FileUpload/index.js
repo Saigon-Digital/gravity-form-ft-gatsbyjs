@@ -12,6 +12,7 @@ const FileUpload = ({
   }
   return (
     <InputWrapper inputData={fieldData} labelFor={name} {...wrapProps}>
+      <label for="input_7" class="gravityform__label gfield_label">Upload CV</label>
       <input
         className="gravityform__field__input gravityform__field__input__uploadfile"
         type="file"
