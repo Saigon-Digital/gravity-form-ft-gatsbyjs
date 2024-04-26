@@ -121,7 +121,9 @@ const GravityFormForm = ({
 
   if (wasSuccessfullySubmitted) {
     const confirmation = confirmations?.find((el) => el.isDefault);
-
+    setTimeout(()=>{
+      window.location.reload()
+    },1000)
     if (confirmation.type === "REDIRECT") {
       const redirect = new URL(confirmation.url);
       navigate(redirect.pathname);
