@@ -51,7 +51,7 @@ const GravityFormForm = ({
 
   const [submitForm, { data: submittionData, loading }] =
     useMutation(submitMutation);
-
+  console.log("LOADING ==>", loading)
   const hasBeenSubmitted = Boolean(submittionData?.submitGfForm);
   const haveFieldErrors = Boolean(submittionData?.submitGfForm?.errors?.length);
 
@@ -120,6 +120,7 @@ const GravityFormForm = ({
   };
 
   if (wasSuccessfullySubmitted) {
+    console.log("SUCCESS SUBMIT=>",wasSuccessfullySubmitted)
     const confirmation = confirmations?.find((el) => el.isDefault);
     setTimeout(()=>{
       window.location.reload()
@@ -190,13 +191,7 @@ const GravityFormForm = ({
                 id={`gform_submit_button_${databaseId}`}
                 type="submit"
               >
-                {loading ? (
-                  <span className="gravityform__button__loading_span">
-                    Loading
-                  </span>
-                ) : (
-                  submitButton?.text
-                )}
+                {submitButton?.text}
               </button>
             </div>
           </form>
