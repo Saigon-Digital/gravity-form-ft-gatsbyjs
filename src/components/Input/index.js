@@ -8,7 +8,7 @@ import { valueToLowerCase } from "../../utils/helpers";
 import InputWrapper from "../InputWrapper";
 
 const standardType = (type) => {
-  switch (type) {
+  switch (valueToLowerCase(type)) {
     case "phone":
       return "tel";
     case "fileupload":
@@ -260,5 +260,7 @@ export const FileUploadField = graphql`
     errorMessage
     isRequired
     type
+    value
+    inputName: inputType
   }
 `;
