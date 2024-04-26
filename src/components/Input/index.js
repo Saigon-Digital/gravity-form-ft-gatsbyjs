@@ -261,6 +261,5 @@ export const FileUploadField = graphql`
     isRequired
     type
     value
-    inputName: inputType
   }
 `;
