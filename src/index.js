@@ -257,6 +257,7 @@ export const GravityFormFields = graphql`
         ...TextAreaField
         ...TextField
         ...FileUploadField
+        
       }
     }
   }
