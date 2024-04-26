@@ -250,3 +250,15 @@ export const PhoneField = graphql`
     value
   }
 `;
+export const FileUploadField = graphql`
+  fragment FileUploadField on WpFileUploadField {
+    adminLabel
+    label   
+    cssClass
+    description
+    descriptionPlacement
+    errorMessage
+    isRequired
+    type
+  }
+`;
