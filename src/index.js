@@ -68,7 +68,7 @@ const GravityFormForm = ({
   } = methods;
 
   const [generalError, setGeneralError] = useState("");
-
+  const [files, setFiles] = useState(null);
   const onSubmitCallback = async () => {
     // Make sure we are not already waiting for a response
     if (!loading) {
@@ -81,10 +81,10 @@ const GravityFormForm = ({
       // Check that at least one field has been filled in
       if (submissionHasOneFieldEntry(values)) {
         setGeneralError("");
-
+        const result = { ...values, fileupload: files };
         const formRes = formatPayload({
           serverData: formFields?.nodes,
-          clientData: values,
+          clientData: result,
         });
 
         submitForm({
@@ -176,6 +176,7 @@ const GravityFormForm = ({
                   preOnSubmit={preOnSubmit}
                   presetValues={presetValues}
                   settings={settings}
+                  setFiles={setFiles}
                 />
               </ul>
             </div>
@@ -255,6 +256,8 @@ export const GravityFormFields = graphql`
         ...SelectField
         ...TextAreaField
         ...TextField
+        ...FileUploadField
+        
       }
     }
   }

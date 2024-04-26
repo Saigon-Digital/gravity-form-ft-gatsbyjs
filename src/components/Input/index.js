@@ -8,7 +8,7 @@ import { valueToLowerCase } from "../../utils/helpers";
 import InputWrapper from "../InputWrapper";
 
 const standardType = (type) => {
-  switch (type) {
+  switch (valueToLowerCase(type)) {
     case "phone":
       return "tel";
     case "fileupload":
@@ -247,6 +247,19 @@ export const PhoneField = graphql`
     placeholder
     shouldAllowDuplicates
     size
+    value
+  }
+`;
+export const FileUploadField = graphql`
+  fragment FileUploadField on WpFileUploadField {
+    adminLabel
+    label   
+    cssClass
+    description
+    descriptionPlacement
+    errorMessage
+    isRequired
+    type
     value
   }
 `;
