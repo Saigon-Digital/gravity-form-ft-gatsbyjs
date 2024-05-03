@@ -143,6 +143,7 @@ const GravityFormForm = ({
 
   return (
     <div className="gform_wrapper" id={`gform_wrapper_${databaseId}`}>
+      <span style={{height:0}} className="log"></span>
       {loading && (
         <span
           style={{
