@@ -51,7 +51,7 @@ const GravityFormForm = ({
 
   const [submitForm, { data: submittionData, loading }] =
     useMutation(submitMutation);
-  console.log("LOADING ==>", loading)
+  console.log("LOADING ==>", loading);
   const hasBeenSubmitted = Boolean(submittionData?.submitGfForm);
   const haveFieldErrors = Boolean(submittionData?.submitGfForm?.errors?.length);
 
@@ -120,11 +120,11 @@ const GravityFormForm = ({
   };
 
   if (wasSuccessfullySubmitted) {
-    console.log("SUCCESS SUBMIT=>",wasSuccessfullySubmitted)
+    console.log("SUCCESS SUBMIT=>", wasSuccessfullySubmitted);
     const confirmation = confirmations?.find((el) => el.isDefault);
-    setTimeout(()=>{
-      window.location.reload()
-    },1000)
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
     if (confirmation.type === "REDIRECT") {
       const redirect = new URL(confirmation.url);
       navigate(redirect.pathname);
@@ -143,6 +143,63 @@ const GravityFormForm = ({
 
   return (
     <div className="gform_wrapper" id={`gform_wrapper_${databaseId}`}>
+      {loading && (
+        <span
+          style={{
+            backgroundColor: "#ebebeba1",
+            borderRadius: "8px",
+            left: "50%",
+            height: "100%",
+            overflowY: "auto",
+            position: "absolute",
+            top: "50%",
+            transform: "translate(-50%,-50%)",
+            width: "100%",
+            zIndex: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "not-allowed",
+          }}
+          className="form-loading"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="xMidYMid"
+            width="200"
+            height="200"
+            style={{
+              shapeRendering: "auto",
+              display: "block",
+              background: "transparent",
+              width: "60px",
+            }}
+          >
+            <g>
+              <circle
+                strokeDasharray="164.93361431346415 56.97787143782138"
+                r="35"
+                strokeWidth="10"
+                stroke="#53bbad"
+                fill="none"
+                cy="50"
+                cx="50"
+              >
+                <animateTransform
+                  keyTimes="0;1"
+                  values="0 50 50;360 50 50"
+                  dur="1s"
+                  repeatCount="indefinite"
+                  type="rotate"
+                  attributeName="transform"
+                ></animateTransform>
+              </circle>
+              <g></g>
+            </g>
+          </svg>
+        </span>
+      )}
       <div className="gform_anchor" id={`gf_${databaseId}`} />
 
       {formFields && (
@@ -191,7 +248,13 @@ const GravityFormForm = ({
                 id={`gform_submit_button_${databaseId}`}
                 type="submit"
               >
-                {submitButton?.text}
+                {loading ? (
+                  <span className="gravityform__button__loading_span">
+                    Loading
+                  </span>
+                ) : (
+                  submitButton?.text
+                )}
               </button>
             </div>
           </form>
@@ -254,7 +317,6 @@ export const GravityFormFields = graphql`
         ...TextAreaField
         ...TextField
         ...FileUploadField
-        
       }
     }
   }
